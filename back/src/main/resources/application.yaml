@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: TrendingApplication
+  profiles:
+    active: dev
+---
+spring:
+  profiles: dev
+  datasource:
+    url: jdbc:mysql://localhost:3306/products?characterEncoding=UTF-8&serverTimezone=UTC
+    username: root
+    password: pass
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    properties:
+      dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+---
+spring:
+  profiles: test
+  datasource:
+    platform: h2
+    url: jdbc:h2:mem:db
+    username: sa
+    password: sa
+    driver-class-name: org.h2.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+    database-platform: org.hibernate.dialect.H2Dialect
